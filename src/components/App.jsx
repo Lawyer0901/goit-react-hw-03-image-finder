@@ -23,16 +23,6 @@ export class App extends Component {
     this.setState({ filter: value });
   };
 
-  // Функция поиска контакта
-
-  handleFindeContact = () => {
-    const { filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-    return this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
   // Рендер всех элементов
 
   render() {

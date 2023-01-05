@@ -1,23 +1,50 @@
+import { Component } from 'react';
 import css from './Searchbar.module.css';
 import { ImSearch } from 'react-icons/im';
-export function Searchbar() {
-  return (
-    <header className={css.searchbar}>
-      <form className={css.searchForm}>
-        <button type="submit" className={css['searchForm-button']}>
-          <span className={css['button-labe']}>
-            <ImSearch className={css.icon} />
-          </span>
-        </button>
+export class Searchbar extends Component {
+  state = {
+    search: '',
+  };
 
-        <input
-          className={css.input}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-      </form>
-    </header>
-  );
+  // Controlled Input
+
+  handleInputValue = e => {
+    const { value } = e.currentTarget;
+    this.setState({ search: value });
+  };
+
+  // Submit Form
+  submitFormHandler = e => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    this.setState({ search: '' });
+  };
+
+  // Render of Form
+  render() {
+    const { search } = this.state;
+    return (
+      <header className={css.searchbar}>
+        <form onSubmit={this.submitFormHandler} className={css.searchForm}>
+          <button type="submit" className={css['searchForm-button']}>
+            <span className={css['button-labe']}>
+              <ImSearch className={css.icon} />
+            </span>
+          </button>
+
+          <input
+            className={css.input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            value={search}
+            placeholder="Search images and photos"
+            onChange={this.handleInputValue}
+          />
+        </form>
+      </header>
+    );
+  }
 }
+
+// key=31605839-858af090e8e0e31dbfed95a6b
