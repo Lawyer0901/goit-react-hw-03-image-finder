@@ -23,6 +23,7 @@ export class Searchbar extends Component {
       return;
     }
     onSubmit(search);
+    this.setState({ search: '' });
   };
 
   // Render of Form

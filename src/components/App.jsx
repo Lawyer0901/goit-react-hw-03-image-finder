@@ -92,6 +92,7 @@ export class App extends Component {
         {images.length === 0 && status === 'rejected' && (
           <div>
             <img
+              width="400px"
               src="https://www.meme-arsenal.com/memes/7a2e9f67e58e929277003ca53ab4d1cb.jpg"
               alt="Nothung to show"
             />
