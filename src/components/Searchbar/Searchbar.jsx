@@ -14,11 +14,15 @@ export class Searchbar extends Component {
   };
 
   // Submit Form
-  submitFormHandler = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    console.log(e.currentTarget);
 
-    this.setState({ search: '' });
+    const { onSubmit } = this.props;
+    const { search } = this.state;
+    if (search.trim() === '') {
+      return;
+    }
+    onSubmit(search);
   };
 
   // Render of Form
@@ -26,7 +30,7 @@ export class Searchbar extends Component {
     const { search } = this.state;
     return (
       <header className={css.searchbar}>
-        <form onSubmit={this.submitFormHandler} className={css.searchForm}>
+        <form onSubmit={this.handleSubmit} className={css.searchForm}>
           <button type="submit" className={css['searchForm-button']}>
             <span className={css['button-labe']}>
               <ImSearch className={css.icon} />
