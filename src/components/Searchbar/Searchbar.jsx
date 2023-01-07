@@ -17,6 +17,7 @@ export class Searchbar extends Component {
   submitFormHandler = e => {
     e.preventDefault();
     console.log(e.currentTarget);
+
     this.setState({ search: '' });
   };
 

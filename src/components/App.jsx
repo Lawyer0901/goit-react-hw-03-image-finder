@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
+import { getImages } from 'service/API';
 // import { nanoid } from 'nanoid';
 // import { Container } from './Container/Container';
 // import { ContactForm } from './ContactForm/ContactForm';
@@ -8,7 +9,9 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 // import { Filter } from './Filter/Filter';
 
 export class App extends Component {
-  state = {};
+  state = {
+    search: '',
+  };
 
   componentDidMount() {}
   componentDidUpdate(_, prevState) {}
@@ -18,18 +21,18 @@ export class App extends Component {
   // Удаляет контакт из списка
 
   // Controlled Input Filter
-  handleInputValue = e => {
-    const { value } = e.target;
-    this.setState({ filter: value });
+  formSubmit = search => {
+    this.setState({ search });
   };
 
   // Рендер всех элементов
 
   render() {
+    const { search } = this.state;
     return (
       <>
-        <Searchbar />
-        <ImageGallery />
+        <Searchbar onSubmit={this.formSubmit} />
+        <ImageGallery search={search} />
       </>
     );
   }
